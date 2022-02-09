@@ -12,7 +12,203 @@
 <script src="https://kit.fontawesome.com/ec4bc117da.js" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script async src="js/bubbles.js"></script>
+    <script type="text/javascript">
+// <![CDATA[
+var colours=new Array("#2489ff", "#2489ff", "#2489ff", "#2489ff", "#2489ff"); // colours for top, right, bottom and left borders and background of bubbles
+var bubbles=1000; // maximum number of bubbles on screen
+var over_or_under="over"; // set to "over" for bubbles to always be on top, or "under" to allow them to float behind other objects
+
+/****************************
+* JavaScript Bubble Cursor  *
+*(c)2010-13 mf2fm web-design*
+*  http://www.mf2fm.com/rv  *
+* DON'T EDIT BELOW THIS BOX *
+****************************/
+var x=ox=400;
+var y=oy=300;
+var swide=800;
+var shigh=600;
+var sleft=sdown=0;
+var bubb=new Array();
+var bubbx=new Array();
+var bubby=new Array();
+var bubbs=new Array();
+var sploosh=false;
+
+function addLoadEvent(funky) {
+  var oldonload=window.onload;
+  if (typeof(oldonload)!='function') window.onload=funky;
+  else window.onload=function() {
+    if (oldonload) oldonload();
+    funky();
+  }
+}
+
+addLoadEvent(buble);
+
+function buble() { if (document.getElementById) {
+  var i, rats, div;
+  for (i=0; i<bubbles; i++) {
+    rats=createDiv("3px", "3px");
+    rats.style.visibility="hidden";
+	rats.style.zIndex=(over_or_under=="over")?"1001":"0";
+
+    div=createDiv("auto", "auto");
+    rats.appendChild(div);
+    div=div.style;
+    div.top="1px";
+    div.left="0px";
+    div.bottom="1px";
+    div.right="0px";
+    div.borderLeft="1px solid "+colours[3];
+    div.borderRight="1px solid "+colours[1];
+
+    div=createDiv("auto", "auto");
+    rats.appendChild(div);
+    div=div.style;
+    div.top="0px";
+    div.left="1px";
+    div.right="1px";
+    div.bottom="0px"
+    div.borderTop="1px solid "+colours[0];
+    div.borderBottom="1px solid "+colours[2];
+
+    div=createDiv("auto", "auto");
+    rats.appendChild(div);
+    div=div.style;
+    div.left="1px";
+    div.right="1px";
+    div.bottom="1px";
+    div.top="1px";
+    div.backgroundColor=colours[4];
+    if (navigator.appName=="Microsoft Internet Explorer") div.filter="alpha(opacity=50)";
+    else div.opacity=0.5;
+    document.body.appendChild(rats);
+    bubb[i]=rats.style;
+  }
+  set_scroll();
+  set_width();
+  bubble();
+}}
+
+function bubble() {
+  var c;
+  if (Math.abs(x-ox)>1 || Math.abs(y-oy)>1) {
+    ox=x;
+    oy=y;
+    for (c=0; c<bubbles; c++) if (!bubby[c]) {
+      bubb[c].left=(bubbx[c]=x)+"px";
+      bubb[c].top=(bubby[c]=y-3)+"px";
+      bubb[c].width="6px";
+      bubb[c].height="6px"
+      bubb[c].visibility="visible";
+      bubbs[c]=3;
+      break;
+    }
+  }
+  for (c=0; c<bubbles; c++) if (bubby[c]) update_bubb(c);
+  setTimeout("bubble()", 40);
+}
+
+document.onmousedown=splash;
+document.onmouseup=function(){clearTimeout(sploosh);};
+
+function splash() {
+  ox=-1;
+  oy=-1;
+  sploosh=setTimeout('splash()', 100);
+}
+
+function update_bubb(i) {
+  if (bubby[i]) {
+    bubby[i]-=bubbs[i]/2+i%2;
+    bubbx[i]+=(i%5-2)/5;
+    if (bubby[i]>sdown && bubbx[i]>sleft && bubbx[i]<sleft+swide+bubbs[i]) {
+	  if (Math.random()<bubbs[i]/shigh*2 && bubbs[i]++<8) {
+		bubb[i].width=bubbs[i]+"px";
+		bubb[i].height=bubbs[i]+"px";
+	  }
+      bubb[i].top=bubby[i]+"px";
+      bubb[i].left=bubbx[i]+"px";
+    }
+    else {
+      bubb[i].visibility="hidden";
+      bubby[i]=0;
+      return;
+    }
+  }
+}
+
+document.onmousemove=mouse;
+function mouse(e) {
+    if(Math.random()<=0.35){ //reduce the number of bubbles.
+  if (e) {
+    y=e.pageY;
+    x=e.pageX;
+  }
+  else {
+    set_scroll();
+    y=event.y+sdown;
+    x=event.x+sleft;
+  }
+    }
+}
+
+window.onresize=set_width;
+function set_width() {
+  var sw_min=999999;
+  var sh_min=999999;
+  if (document.documentElement && document.documentElement.clientWidth) {
+    if (document.documentElement.clientWidth>0) sw_min=document.documentElement.clientWidth;
+    if (document.documentElement.clientHeight>0) sh_min=document.documentElement.clientHeight;
+  }
+  if (typeof(self.innerWidth)=='number' && self.innerWidth) {
+    if (self.innerWidth>0 && self.innerWidth<sw_min) sw_min=self.innerWidth;
+    if (self.innerHeight>0 && self.innerHeight<sh_min) sh_min=self.innerHeight;
+  }
+  if (document.body.clientWidth) {
+    if (document.body.clientWidth>0 && document.body.clientWidth<sw_min) sw_min=document.body.clientWidth;
+    if (document.body.clientHeight>0 && document.body.clientHeight<sh_min) sh_min=document.body.clientHeight;
+  }
+  if (sw_min==999999 || sh_min==999999) {
+    sw_min=800;
+    sh_min=600;
+  }
+  swide=sw_min;
+  shigh=sh_min;
+}
+
+window.onscroll=set_scroll;
+function set_scroll() {
+  if (typeof(self.pageYOffset)=='number') {
+    sdown=self.pageYOffset;
+    sleft=self.pageXOffset;
+  }
+  else if (document.body && (document.body.scrollTop || document.body.scrollLeft)) {
+    sdown=document.body.scrollTop;
+    sleft=document.body.scrollLeft;
+  }
+  else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+    sleft=document.documentElement.scrollLeft;
+    sdown=document.documentElement.scrollTop;
+  }
+  else {
+    sdown=0;
+    sleft=0;
+  }
+}
+
+function createDiv(height, width) {
+  var div=document.createElement("div");
+  div.style.position="absolute";
+  div.style.height=height;
+  div.style.width=width;
+  div.style.overflow="hidden";
+  div.style.backgroundColor="transparent";
+  return (div);
+}
+// ]]>
+</script>
 <style>
   body {
     font: 400 15px Lato, sans-serif;
@@ -35,7 +231,7 @@
   }  
   .jumbotron {
       background-image: url("https://github.com/Aatmaj-Zephyr/Aatmaj-Zephyr/blob/Aatmaj-Zephyr-patch-1/wallpaperflare.com_wallpaper.jpg?raw=true");
-    background-color: #66f2ff;
+
     color: #fff;
     padding: 500px 25px;
     font-family: Montserrat, sans-serif;
@@ -220,7 +416,7 @@
   
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
-<ul class="social" style="user-select: auto;"><nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -249,8 +445,8 @@
 </div>
 
 <!-- Container (About Section) -->
-<div id="about" class="container-fluid">
-  <div class="row">
+<div id="about" class="container-fluid bg-white">
+  <div class="row bg-white">
     <div class="col-sm-8">
       <h2>ABOUT THE MARINE ROBOTICS TEAM</h2><br>
       <h4>
@@ -264,16 +460,15 @@ The Marine Robotics Team (TMRT) is a student team from K. J. Somaiya College of 
   </div>
 </div>
 
-<div class="container-fluid bg-grey">
-  <div class="row">
+<div class="container-fluid ">
+  <div class="row bg-grey">
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-globe logo slideanim"></span>
     </div>
     <div class="col-sm-8">
       <h2>Our Values</h2><br>
-      <h4><strong>MISSION:</strong>
-We aim to build an “Autonomous Underwater Vehicle” which is capable of performing a set of tasks and making its own decisions based on a few algorithms like Deep Learning, etc. We aim to compete in various national and international competitions like DRUSE, SAUVC, RoboSub, SAUC-E and NIOT SAVe.	    </h4><br>
-      <p><strong>VISION:</strong> The Marine Robotics Team (TMRT) is the underwater robotics and offshore engineering team of the college. Our team was founded on 27th July 2017. We aim to build an “Autonomous Underwater Vehicle” which is capable of performing a set of tasks and making its own decisions based on a few algorithms like Deep Learning, etc. We aim to compete in various national and international competitions like DRUSE, SAUVC, RoboSub, SAUC-E and NIOT SAVe.</div>
+      <h4><strong>Mission:</strong>
+We aim to build an “Autonomous Underwater Vehicle” which is capable of performing a set of tasks and making its own decisions based on a few algorithms like Deep Learning, etc. We aim to compete in various national and international competitions like DRUSE, SAUVC, RoboSub, SAUC-E and NIOT SAVe.      </h4><br>
   </div>
 </div>
 <div class="container-fluid bg-white  text-center">
@@ -371,6 +566,8 @@ kindle their innovative thinking in this unexplored area of ocean environment an
                 </div>
             </div>
             </div>
+            </div>
+            </div>
 <!-- Container (sponsers Section) -->
 <section id="sponsers" class="container-fluid bg-grey text-center" >
     <h1  class="section-title">Sponsers</h1>
@@ -405,7 +602,7 @@ kindle their innovative thinking in this unexplored area of ocean environment an
 
 <!-- Container (gallery Section) -->
 
-<section id="gallery" class="pb-5">
+<section id="gallery" class="pb-5 text-center">
 
     <div class="container">
         <h5 class="section-title h1">Gallery</h5>
@@ -597,7 +794,7 @@ kindle their innovative thinking in this unexplored area of ocean environment an
             }
 </style>
 
-</div>
+
 
     <br />
     <br />
@@ -607,7 +804,6 @@ kindle their innovative thinking in this unexplored area of ocean environment an
     <br />
 
   
-</div>
 
 
     
@@ -669,6 +865,7 @@ kindle their innovative thinking in this unexplored area of ocean environment an
 <style>
     body {
         background: white;
+        
     }
 
     #contRow {
@@ -834,3 +1031,4 @@ $(document).ready(function(){
 
 </body>
 </html>
+
