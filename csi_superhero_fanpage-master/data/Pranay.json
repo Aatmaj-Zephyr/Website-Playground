@@ -1,0 +1,10 @@
+{    
+    "title" : "SPIDER MAN",
+    "image" : "https://www.looper.com/img/gallery/the-untold-truth-of-spider-mans-iron-spider-suit/intro-1526006714.jpg",
+    "description" :"<Just a teenager with special powers>",
+    "power" : ["Super quick", "super strong", "super quick as well"],
+    "widget_color" :"<blue>",
+    "text_color" :"<black>", 
+    "dialogue":"<That thing doesn't allow the laws of physics at all!!>",
+    "author" : "<Pranay>"
+}    
