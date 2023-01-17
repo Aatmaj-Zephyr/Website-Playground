@@ -33,6 +33,11 @@
             </div>
         </div>
     </div>
+    <div class="addEventButton" onclick="newNotification()">
+        <div class="addEventButtonText">
+        ADD EVENT
+    </div>
+    </div>
 
 </body>
 <script>
@@ -40,7 +45,7 @@
     function myFunction(a) {
         var notification = document.querySelector(".classNotifications").querySelector(".notificationClass" + a);
         notification.querySelector(".likesCountSmallDisplay").innerHTML = parseInt(notification.querySelector(".likesCountSmallDisplay").innerHTML) + 1;
-        newNotification()
+        
     }
     function newNotification() {
         notificationCount+=1;
@@ -70,7 +75,7 @@
                 <div class=\" "+ type + "Icon\" >                                                         \
                 </div>                                                              \
                 <div class=\" titleSmall\" >                                                            \
-                    "+title+"                                                          \
+                    "+title.toUpperCase()+"                                                          \
                 </div>                                                          \
                 <div class=\" horizontalLine\" >                                                            \
                 </div>                                                          \
