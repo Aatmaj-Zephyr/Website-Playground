@@ -1,180 +1,191 @@
-.kjscePageBody{
+.kjscePageBody {
     /* KJSCE page */
 
 
-box-sizing: border-box;
+    box-sizing: border-box;
 
-position: relative;
-width: 360px;
-height: 800px;
+    position: relative;
+    width: 360px;
+    height: 800px;
 
-background: linear-gradient(168.7deg, #E2FFFA 0%, #FDFDFD 101.15%);
-border: 1px solid #000000;
+    background: linear-gradient(168.7deg, #E2FFFA 0%, #FDFDFD 101.15%);
+    border: 1px solid #000000;
 }
 
-.classNotifications{
+.classNotifications {
     /* Class notifications */
 
+   
+    box-sizing: content-box;
 
-box-sizing: border-box;
+    position: relative;
+    width: 325px;
+    left: 18px;
+    top: 18px;
+    padding-bottom: 10px;
 
-position: absolute;
-width: 325px;
-height: 250px;
-left: 18px;
-top: 18px;
-
-background: #FFFFFF;
-border: 1px solid #000000;
-border-radius: 10px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 10px;
 }
-.notificationsSport{
+
+.notificationsSport {
     /* Class notifications sport button */
 
 
-box-sizing: border-box;
+    box-sizing: border-box;
 
-position: absolute;
-width: 306px;
-height: 110px;
-left: 9px;
-top: 7px;
+    position: relative;
+    width: 306px;
+    height: 110px;
+    left: 9px;
+    top: 7px;
 
-background: linear-gradient(90deg, #4EFF5F 23.08%, #FFFFFF 100%);
-border: 1px solid #000000;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 10px;
+    background: linear-gradient(90deg, #4EFF5F 23.08%, #FFFFFF 100%);
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
 }
-.heartVector{
+
+.heartVector {
     /* Vector */
 
 
-position: absolute;
-left: 90.52%;
-right: 6.21%;
-top: 52.73%;
-bottom: 38.18%;
+    position: absolute;
+    left: 90.52%;
+    right: 6.21%;
+    top: 52.73%;
+    bottom: 38.18%;
+
+
 
 }
-.likesCountSmallDisplay{
+
+.likesCountSmallDisplay {
     /* 4 */
 
 
-position: absolute;
-width: 10px;
-height: 23px;
-left: 262px;
-top: 52px;
+    position: absolute;
+    width: 10px;
+    height: 23px;
+    left: 262px;
+    top: 52px;
 
-font-family: 'Comic Neue';
-font-style: normal;
-font-weight: 700;
-font-size: 20px;
-line-height: 23px;
-/* identical to box height */
+    font-family: 'Comic Neue';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    /* identical to box height */
 
 
-color: #000000;
+    color: #000000;
 }
-.timeEventSmallDisplay{
+
+.timeSmallDisplay {
     /* 4:15-5:15 */
 
 
-position: absolute;
-width: 139px;
-height: 40px;
-left: 27px;
-top: 81px;
+    position: absolute;
+    width: 139px;
+    height: 40px;
+    left: 27px;
+    top: 81px;
 
-font-family: 'Comic Neue';
-font-style: normal;
-font-weight: 700;
-font-size: 24px;
-line-height: 28px;
+    font-family: 'Comic Neue';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
 
-color: #000000;
+    color: #000000;
 }
-.playersSmallDisplay{
+
+.playersSmallDisplay {
     /* 7/10 */
 
 
-position: absolute;
-width: 65px;
-height: 40px;
-left: 230px;
-top: 70px;
+    position: absolute;
+    width: 65px;
+    height: 40px;
+    left: 230px;
+    top: 70px;
 
-font-family: 'Comic Neue';
-font-style: normal;
-font-weight: 700;
-font-size: 35px;
-line-height: 40px;
+    font-family: 'Comic Neue';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 40px;
 
-color: #000000;
+    color: #000000;
 }
-.soccerball{
-/* Soccer Ball */
+
+.sportIcon {
+    /* Soccer Ball */
 
 
-position: absolute;
-width: 54px;
-height: 54px;
-left: 9px;
-top: 2px;
+    position: absolute;
+    width: 54px;
+    height: 54px;
+    left: 9px;
+    top: 2px;
 
-background: url(icons8-soccer-ball-90.png);
-background-size: 54px 54px;
+    background: url(icons8-soccer-ball-90.png);
+    background-size: 54px 54px;
 }
-.eventTitle{
+
+.titleSmall {
     /* BASKETBALL */
 
 
-position: absolute;
-width: 224px;
-height: 46px;
-left: 63px;
-top: 6px;
+    position: absolute;
+    width: 224px;
+    height: 46px;
+    left: 63px;
+    top: 6px;
 
-font-family: 'Comic Neue';
-font-style: normal;
-font-weight: 700;
-font-size: 35px;
-line-height: 46px;
-/* identical to box height */
+    font-family: 'Comic Neue';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 46px;
+    /* identical to box height */
 
 
-color: #000000;
+    color: #000000;
 }
-.horizontalLine{
+
+.horizontalLine {
     /* Line 2 */
 
 
-position: absolute;
-width: 195px;
-height: 0px;
-left: 63px;
-top: 52px;
+    position: absolute;
+    width: 195px;
+    height: 0px;
+    left: 63px;
+    top: 52px;
 
-border: 1px solid #000000;
+    border: 1px solid #000000;
 }
-.sportTag{
+
+.sportTag {
     /* Sport */
 
 
-position: absolute;
-width: 47px;
-height: 23px;
-left: 13px;
-top: 52px;
+    position: absolute;
+    width: 47px;
+    height: 23px;
+    left: 13px;
+    top: 52px;
 
-font-family: 'Comic Neue';
-font-style: italic;
-font-weight: 700;
-font-size: 20px;
-line-height: 23px;
-/* identical to box height */
+    font-family: 'Comic Neue';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    /* identical to box height */
 
 
-color: #000000;
+    color: #000000;
 
 }
