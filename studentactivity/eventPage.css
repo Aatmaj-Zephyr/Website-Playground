@@ -1,0 +1,623 @@
+.newEventPage{
+/* New event page */
+
+box-sizing: border-box;
+
+position: relative;
+width: 360px;
+height: 1713px;
+
+background: linear-gradient(168.7deg, #E7FFFB 0%, #FDFDFD 101.15%);
+border: 1px solid #000000;
+}
+
+.titleFrame{
+
+/* Frame 5 */
+
+position: absolute;
+width: 325px;
+height: 133px;
+left: 20px;
+top: 21px;
+}
+
+.titletextbox{  font-size: 40px; 
+/* Frame 4 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 312px;
+height: 69px;
+left: 0px;
+top: 64px;
+
+background: #FFFFFF;
+border: 1px solid #000000;
+border-radius: 10px;
+}
+
+.titleText{
+/* Title */
+
+position: absolute;
+width: 73px;
+height: 46px;
+left: 0px;
+top: 8px;
+
+font-family: 'Lucida Handwriting';
+font-style: normal;
+font-weight: 700;
+font-size: 40px;
+line-height: 46px;
+/* identical to box height */
+
+color: #000000;
+
+}
+
+.typeFrame{
+/* Frame 6 */
+
+position: absolute;
+width: 325px;
+height: 133px;
+left: 17px;
+top: 173px;
+
+}
+
+.typetextbox{  font-size: 40px; 
+/* Frame 4 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 312px;
+height: 69px;
+left: 0px;
+top: 64px;
+
+background: #FFFFFF;
+border: 1px solid #000000;
+border-radius: 10px;
+}
+
+.dropDownArrowtextbox{  font-size: 40px; 
+
+
+/* Vector */
+
+position: absolute;
+left: 23.33%;
+right: 23.38%;
+top: 25%;
+bottom: 25.03%;
+
+background: #D9D9D9;
+border: 1.5px solid #000000;
+
+}
+
+.typeText{
+/* Type */
+
+position: absolute;
+width: 80px;
+height: 46px;
+left: 0px;
+top: 8px;
+
+font-family: 'Lucida Handwriting';
+font-style: normal;
+font-weight: 700;
+font-size: 40px;
+line-height: 46px;
+/* identical to box height */
+
+color: #000000;
+
+}
+
+.locationFrame{
+
+/* Frame 7 */
+
+position: absolute;
+width: 325px;
+height: 133px;
+left: 17px;
+top: 339px;
+}
+
+.locationFrameText{
+/* Frame 4 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 312px;
+height: 69px;
+left: 0px;
+top: 64px;
+
+background: #FFFFFF;
+border: 1px solid #000000;
+border-radius: 10px;
+
+}
+
+
+.dropDownArrowLocation{
+
+/* Vector */
+
+position: absolute;
+left: 23.33%;
+right: 23.38%;
+top: 25%;
+bottom: 25.03%;
+
+background: #D9D9D9;
+border: 1.5px solid #000000;
+
+}
+
+.locationText{
+/* Location */
+
+position: absolute;
+width: 146px;
+height: 46px;
+left: 0px;
+top: 8px;
+
+font-family: 'Lucida Handwriting';
+font-style: normal;
+font-weight: 700;
+font-size: 40px;
+line-height: 46px;
+/* identical to box height */
+
+color: #000000;
+
+}
+.sendToFrame{
+
+/* Frame 10 */
+
+position: absolute;
+width: 325px;
+height: 152px;
+left: 20px;
+top: 505px;
+
+}
+
+.sendToText
+
+{/* Send to */
+
+position: absolute;
+width: 132px;
+height: 46px;
+left: 0px;
+top: 8px;
+
+font-family: 'Lucida Handwriting';
+font-style: normal;
+font-weight: 700;
+font-size: 40px;
+line-height: 46px;
+/* identical to box height */
+
+color: #000000;
+}
+
+.sendToDropDown{
+    
+
+        box-sizing: border-box;
+     
+     position: absolute;
+     width: 312px;
+     height: 69px;
+     left: 7px;
+     top: 67px;
+     
+     background: #FFFFFF;
+     border: 1px solid #000000;
+     border-radius: 10px;
+     
+     }
+
+.sendtoDropDownEle
+{/* Frame 13 */
+
+    box-sizing: border-box;
+    display: none;
+    position: relative;
+    width: 312px;
+    height: 169px;
+    padding-top: 9px;
+    margin-top: 60px;
+    
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 10px;
+      min-width: 160px;
+      overflow: auto;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+
+}
+
+.dropDownArrowSendTo
+
+{/* Vector */
+
+position: absolute;
+left: 23.33%;
+right: 23.38%;
+top: 25%;
+bottom: 25.03%;
+
+background: #D9D9D9;
+border: 1.5px solid #000000;
+}
+
+.numberOfPeopleFrame
+{/* Frame 8 */
+
+position: absolute;
+width: 325px;
+height: 133px;
+left: 20px;
+top: 682px;
+}
+
+.numberOfPeopleTextBox
+{/* Frame 4 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 147px;
+height: 69px;
+left: 8px;
+top: 64px;
+
+background: #FFFFFF;
+border: 1px solid #000000;
+border-radius: 10px;}
+
+
+/* Number of people */
+
+position: absolute;
+width: 309px;
+height: 46px;
+left: 0px;
+top: 8px;
+
+font-family: 'Lucida Handwriting';
+font-style: normal;
+font-weight: 700;
+font-size: 40px;
+line-height: 46px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* (optional) */
+
+position: absolute;
+width: 132px;
+height: 37px;
+left: 193px;
+top: 67px;
+
+font-family: 'Lucida Handwriting';
+font-style: italic;
+font-weight: 400;
+font-size: 32px;
+line-height: 37px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* Frame 12 */
+
+position: absolute;
+width: 325px;
+height: 133px;
+left: 17px;
+top: 1049px;
+
+
+
+/* Frame 4 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 297px;
+height: 69px;
+left: 0px;
+top: 64px;
+
+background: #FFFFFF;
+border: 1px solid #000000;
+border-radius: 10px;
+
+
+/* Iconsax/Linear/arrowdown3 */
+
+position: absolute;
+width: 40px;
+height: 40px;
+left: 244px;
+top: 15px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 23.33%;
+right: 23.38%;
+top: 25%;
+bottom: 25.03%;
+
+background: #D9D9D9;
+border: 1.5px solid #000000;
+
+
+/* Today */
+
+position: absolute;
+width: 98px;
+height: 46px;
+left: 51px;
+top: 12px;
+
+font-family: 'Lucida Handwriting';
+font-style: normal;
+font-weight: 700;
+font-size: 40px;
+line-height: 46px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* Day */
+
+position: absolute;
+width: 64px;
+height: 46px;
+left: 0px;
+top: 8px;
+
+font-family: 'Lucida Handwriting';
+font-style: normal;
+font-weight: 700;
+font-size: 40px;
+line-height: 46px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* Frame 11 */
+
+position: absolute;
+width: 325px;
+height: 146px;
+left: 24px;
+top: 859px;
+
+
+
+/* Frame 4 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 106px;
+height: 69px;
+left: 0px;
+top: 64px;
+
+background: #FFFFFF;
+border: 1px solid #000000;
+border-radius: 10px;
+
+
+/* Frame 5 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 106px;
+height: 69px;
+left: 204px;
+top: 64px;
+
+background: #FFFFFF;
+border: 1px solid #000000;
+border-radius: 10px;
+
+
+/* to */
+
+position: absolute;
+width: 33px;
+height: 46px;
+left: 130px;
+top: 76px;
+
+font-family: 'Lucida Handwriting';
+font-style: normal;
+font-weight: 700;
+font-size: 40px;
+line-height: 46px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* Time */
+
+position: absolute;
+width: 83px;
+height: 46px;
+left: 0px;
+top: 8px;
+
+font-family: 'Lucida Handwriting';
+font-style: normal;
+font-weight: 700;
+font-size: 40px;
+line-height: 46px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* (optional) */
+
+position: absolute;
+width: 132px;
+height: 37px;
+left: 125px;
+top: 12px;
+
+font-family: 'Lucida Handwriting';
+font-style: italic;
+font-weight: 400;
+font-size: 32px;
+line-height: 37px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* Frame 9 */
+
+position: absolute;
+width: 325px;
+height: 308px;
+left: 24px;
+top: 1257px;
+
+
+
+/* Frame 4 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 312px;
+height: 228px;
+left: 0px;
+top: 64px;
+
+background: #FFFFFF;
+border: 1px solid #000000;
+border-radius: 10px;
+
+
+/* Description */
+
+position: absolute;
+width: 193px;
+height: 46px;
+left: 0px;
+top: 8px;
+
+font-family: 'Lucida Handwriting';
+font-style: normal;
+font-weight: 700;
+font-size: 40px;
+line-height: 46px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* (optional) */
+
+position: absolute;
+width: 132px;
+height: 37px;
+left: 193px;
+top: 17px;
+
+font-family: 'Lucida Handwriting';
+font-style: italic;
+font-weight: 400;
+font-size: 32px;
+line-height: 37px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* Frame 2 */
+
+position: absolute;
+width: 295px;
+height: 82px;
+left: 27px;
+top: 1590px;
+
+
+
+/* Rectangle 2 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 288px;
+height: 72px;
+left: 7px;
+top: 0px;
+
+background: #7BEFFF;
+border: 1px solid #000000;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+border-radius: 25px;
+
+
+/* ADD EVENT */
+
+position: absolute;
+width: 203px;
+height: 46px;
+left: 49px;
+top: 13px;
+
+font-family: 'Lucida Handwriting';
+font-style: normal;
+font-weight: 700;
+font-size: 40px;
+line-height: 46px;
+/* identical to box height */
+
+color: #000000;
+
+border: 1px solid #000000;
