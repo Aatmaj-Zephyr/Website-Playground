@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-01-18T08:19:48.937Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36" version="20.8.5" etag="E6gtoIdUf65MTpMYyHHH" type="github">
+<mxfile host="app.diagrams.net" modified="2023-01-18T08:48:57.859Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36" version="20.8.5" etag="KwXtGBTTxcW2E7iRXSlz" type="github">
   <diagram id="SwB-V6DmJMYonUJmDzV9" name="Page-1">
-    <mxGraphModel dx="1434" dy="788" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2284" dy="788" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -8,7 +8,7 @@
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="160" y="80" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="150" y="78" />
+              <mxPoint x="160" y="78" />
               <mxPoint x="200" y="78" />
             </Array>
           </mxGeometry>
@@ -99,6 +99,27 @@
         </mxCell>
         <mxCell id="jfGHQn-JiT_-VLL9edhB-25" value="Participating logic" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="350" y="680" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jfGHQn-JiT_-VLL9edhB-27" value="mySQL" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="290" y="50" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="jfGHQn-JiT_-VLL9edhB-28" value="mySQL" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="460" y="50" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="jfGHQn-JiT_-VLL9edhB-29" value="NodeJS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="440" y="650" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="jfGHQn-JiT_-VLL9edhB-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jfGHQn-JiT_-VLL9edhB-30" target="jfGHQn-JiT_-VLL9edhB-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jfGHQn-JiT_-VLL9edhB-30" value="Login and startup" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-130" y="220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jfGHQn-JiT_-VLL9edhB-32" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="760" as="sourcePoint" />
+            <mxPoint y="10" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
