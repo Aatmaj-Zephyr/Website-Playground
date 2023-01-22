@@ -1,11 +1,12 @@
 .kjscePageBody {
+
     /* KJSCE page */
 
 
     box-sizing: content-box;
 
-    position: relative;
-    width: 360px;
+
+    
    
 
     background: linear-gradient(168.7deg, #E2FFFA 0%, #FDFDFD 101.15%);
@@ -17,10 +18,11 @@
 
    
     box-sizing: content-box;
-
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
     width: 325px;
-    left: 18px;
+    
     top: 18px;
     padding-bottom: 9px;
 
@@ -198,7 +200,8 @@ box-sizing: content-box;
 position: relative;
 width: 288px;
 height: 72px;
-left: 32px;
+margin-left: auto;
+    margin-right: auto;
 top: 200px;
 
 background: #7BEFFF;
