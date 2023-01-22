@@ -1,61 +1,115 @@
-<!DOCTYPE html>
+<!--kjsce page -->
 <html>
-<head>
- 
-  <!-- Responsive -->
-  <meta charset="utf-8">
-  <meta name="viewport"
-        content="width=device-width,
-                 initial-scale=1">
-  <meta http-equiv="X-UA-Compatible"
-        content="ie=edge">
- 
-  <!-- Title -->
-  <title>PWA Tutorial</title>
- 
-  <!-- Meta Tags required for
-       Progressive Web App -->
-  <meta name=
-  "apple-mobile-web-app-status-bar"
-        content="#aa7700">
-  <meta name="theme-color"
-        content="black">
- 
-  <!-- Manifest File link -->
-  
+<link rel="stylesheet" href="mystyle.css">
+<script src="https://use.fontawesome.com/49b98aaeb5.js"></script>
 <link rel="manifest" href="manifest.json" />     
-</head>
- 
-<body>
-  <h1 style="color: green;">
-    GeeksforGeeks</h1>
- 
+<body class="kjscePageBody">
+    <div class="classNotifications">
+        <div class="notificationClass1" onclick="myFunction(1)">
+            <div class="notificationsSport">
+                <div class="heartVector">
+                    <i class="fa fa-heart"
+                        style="color:#fa0303; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i>
+                </div>
+                <div class="likesCountSmallDisplay">
+                    4
+                </div>
+                <div class="timeSmallDisplay">
+                    4:15-5:15
+                </div>
+                <div class="playersSmallDisplay">
+                    7/10
+                </div>
+                <div class="sportIcon">
+                </div>
+                <div class="titleSmall">
+                    BASKETBALL
+                </div>
+                <div class="horizontalLine">
+                </div>
+                <div class=" sportTag">
+                    Sport
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="addEventButton" onclick="newNotification()">
+        <div class="addEventButtonText">
+        ADD EVENT
+    </div>
+    </div>
+  
+  
    
-<p>
-    This is a simple tutorial for
-    creating a PWA application.
-  </p>
- 
- 
- <script>
-    window.addEventListener('load', () => {
-      registerSW();
-    });
- 
-    // Register the Service Worker
-    async function registerSW() {
-      if ('serviceWorker' in navigator) {
-        try {
-          await navigator
-                .serviceWorker
-                .register('serviceworker.js');
-        }
-        catch (e) {
-          console.log('SW registration failed');
+  <body>
+   
+   
+   <script>
+      window.addEventListener('load', () => {
+        registerSW();
+      });
+   
+      // Register the Service Worker
+      async function registerSW() {
+        if ('serviceWorker' in navigator) {
+          try {
+            await navigator
+                  .serviceWorker
+                  .register('serviceworker.js');
+          }
+          catch (e) {
+            console.log('SW registration failed');
+          }
         }
       }
-    }
- </script>
+   </script>
 </body>
- 
+<script>
+    var notificationCount = 1;
+    function myFunction(a) {
+        var notification = document.querySelector(".classNotifications").querySelector(".notificationClass" + a);
+        notification.querySelector(".likesCountSmallDisplay").innerHTML = parseInt(notification.querySelector(".likesCountSmallDisplay").innerHTML) + 1;
+        
+    }
+    function newNotification() {
+        notificationCount+=1;
+        var classNotifications = document.querySelector(".classNotifications")
+        var likes = 5;//fetch
+        var time = "2:15-3:15" //fetch
+        var players = "3/10"//fetch
+        var type = "sport"//fetch
+        var title = "Badmington" //fetch
+
+        var newNotification =
+            "   \
+            <div class=\" notificationClass"+notificationCount+"\"   onclick=\" myFunction("+notificationCount+")\" > \
+            <div class=\" notifications"+ type + "\" >                                                            \
+                <div class=\" heartVector\" >                                                           \
+                    <i class=\"fa fa-heart\" style=\"color:#fa0303; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;\"></i>\
+                </div>                                                          \
+                <div class=\" likesCountSmallDisplay\" >                                                            \
+                    "+likes+"                                                           \
+                </div>                                                          \
+                <div class=\" timeSmallDisplay\" >                                                          \
+                    "+time+    "                                                       \
+                </div>                                                          \
+                <div class=\" playersSmallDisplay\" >                                                           \
+                  "+players+"                                                        \
+                </div>                                                                          \
+                <div class=\" "+ type + "Icon\" >                                                         \
+                </div>                                                              \
+                <div class=\" titleSmall\" >                                                            \
+                    "+title.toUpperCase()+"                                                          \
+                </div>                                                          \
+                <div class=\" horizontalLine\" >                                                            \
+                </div>                                                          \
+                <div class=\"  "+ type + "Tag\" >                                                         \
+                    "+ type + "                                                           \
+                </div>                                                          \
+            </div></div>                                                            \
+            "
+        classNotifications.innerHTML += newNotification
+    }
+</script>
+
 </html>
