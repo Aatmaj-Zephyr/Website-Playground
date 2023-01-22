@@ -124,6 +124,7 @@
   const options = {
     body: notifBody, //body of app
     icon: notifImg, //icon of app
+    vibrate: [200, 100, 200]
   };
   Notification.requestPermission().then((result) => {
     if (result === 'granted') {
