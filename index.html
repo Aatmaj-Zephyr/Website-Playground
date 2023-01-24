@@ -3,6 +3,8 @@
 
 <link rel="stylesheet" href="mystyle.css">
 <script src="https://use.fontawesome.com/49b98aaeb5.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-messaging.js"></script>
 
 <link rel="manifest" href="manifest.json" />     
 
@@ -58,7 +60,7 @@
           try {
             await navigator
                   .serviceWorker
-                  .register('/serviceworker.js');
+                  .register('serviceworker.js');
           }
           catch (e) {
             console.log('SW registration failed');
@@ -66,8 +68,35 @@
         }
       }
    </script>
-</body>
+
+<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js ">
+</script>
 <script>
+    const firebaseConfig = {
+  apiKey: "AIzaSyA4DEsfJ0EZJRqEoGVYWEcHo53I1flmgPA",
+  authDomain: "mini-project-sem-3.firebaseapp.com",
+  databaseURL: "https://mini-project-sem-3-default-rtdb.firebaseio.com",
+  projectId: "mini-project-sem-3",
+  storageBucket: "mini-project-sem-3.appspot.com",
+  messagingSenderId: "881818336366",
+  appId: "1:881818336366:web:e5bf2fb22315ce1b7eba7f",
+  measurementId: "G-0LZFL2KQCV"
+};
+firebase.initializeApp(firebaseConfig);
+var likesCountRef = firebase.database().ref('Event/Likes');
+likesCountRef.on('value', (snapshot) => {
+  const data = snapshot.val();
+//  updateLikesCount(postElement, data);
+  console.log(data);
+});
+var likesCountRef = firebase.database().ref('Event');
+likesCountRef.on('value', (snapshot) => {
+  const data = snapshot.val();
+  console.log(data);
+  newNotification(data.time,data.Name,data.RegisteredPlayers+"/"+ data.Players,data.Likes)
+});
+
+   
     var notificationCount = 1;
     function myFunction(a) {
         var notificationBox = document.querySelector(".classNotifications").querySelector(".notificationClass" + a);
@@ -77,14 +106,16 @@
 
     }
  
-    function newNotification() {
+    function newNotification( time,title,players,likes) {
+
+       
         notificationCount+=1;
         var classNotifications = document.querySelector(".classNotifications")
-        var likes = 5;//fetch
-        var time = "2:15-3:15" //fetch
-        var players = "3/10"//fetch
+       // var likes = 5;//fetch
+      //  var time = "2:15-3:15" //fetch
+     //   var players = "3/10"//fetch
         var type = "sport"//fetch
-        var title = "Badmington" //fetch
+      //  var title = "Badmington" //fetch
 
         var newNotification =
             "   \
@@ -134,5 +165,6 @@
   
     }
 </script>
+</body>
 
 </html>
