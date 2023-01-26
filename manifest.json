@@ -44,5 +44,7 @@
         "url":"The url you would like to open when the user chooses this shortcut. This must be a URL local to your PWA. For example: If my start_url is /, this URL must be something like /shortcut",
         "description":"A description of the functionality of this shortcut"
     }
-]
+],
+    "gcm_sender_id": "103953800507"
+
 }
