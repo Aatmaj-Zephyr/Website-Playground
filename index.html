@@ -56,6 +56,8 @@
    
       // Register the Service Worker
       async function registerSW() {
+        console.log('Registering service worker for app');
+
         if ('serviceWorker' in navigator) {
           try {
             await navigator
@@ -63,12 +65,15 @@
                   .register('serviceworker.js');
           }
           catch (e) {
-            console.log('SW registration failed');
+            console.log('SW registration for app failed');
+            console.log(e.message);
           }
         }
       }
-   </script>
 
+
+   </script>
+<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-messaging.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js ">
 </script>
 <script>
@@ -83,6 +88,8 @@
   measurementId: "G-0LZFL2KQCV"
 };
 firebase.initializeApp(firebaseConfig);
+fetchFromFireBase();
+function fetchFromFireBase(){ //fetch from firebase
 var likesCountRef = firebase.database().ref('Event/Likes');
 likesCountRef.on('value', (snapshot) => {
   const data = snapshot.val();
@@ -95,7 +102,7 @@ likesCountRef.on('value', (snapshot) => {
   console.log(data);
   newNotification(data.time,data.Name,data.RegisteredPlayers+"/"+ data.Players,data.Likes)
 });
-
+}
    
     var notificationCount = 1;
     function myFunction(a) {
@@ -150,20 +157,134 @@ likesCountRef.on('value', (snapshot) => {
 //send notification from app
 
   const notifTitle = title;
-  const notifBody = `New`+type + " " + title + 'is added';
+  const notifBody = `New `+ type + " " + title + ' is added with ' + players;
   const notifImg = `/images/icon-192x192.jpg`;
   const options = {
     body: notifBody, //body of app
     icon: notifImg, //icon of app
     vibrate: [200, 100, 200]
   };
+ 
   Notification.requestPermission().then((result) => {
     if (result === 'granted') {
-        new Notification(notifTitle, options);
+notify(notifTitle,options)
     }
+   
   });
   
     }
+   
+function notify(notifTitle,options){
+ new Notification(notifTitle, options);
+
+}
+
+    const messaging = firebase.messaging();
+// Add the public key generated from the console here.
+messaging.getToken(messaging, {vapidKey: "BHgxjQxVuZKBKvWQTXd8ZQUPiuTJyo9q-teOcIVXxlgX9PfyREtU8cuY0V6DhWOgr9K0HQ86EdhstKFMUb_QyEQ"})
+
+function requestPermission() {
+  console.log('Requesting permission...');
+  Notification.requestPermission().then((permission) => {
+    if (permission === 'granted') {
+      console.log('Notification permission granted.');
+    }
+  });
+}
+
+// Get registration token. Initially this makes a network call, once retrieved
+// subsequent calls to getToken will return from cache.
+messaging.getToken({ vapidKey: 'BJPJ4Ba80OZGK3xiRceIVpfCLa0K6HsjY6jRUz4jKDX18ko9j1s4ZtLdkzhEbLmjtjKeMPkktp_YQynAeEhvVCg' })
+     .then((currentToken) => {
+  if (currentToken) {
+    // Send the token to your server and update the UI if necessary
+    // ...
+    console.log("current token exists");
+    console.log(currentToken)
+  } else {
+    // Show permission request UI
+    console.log('No registration token available. Request permission to generate one.');
+    // ...
+  }
+}).catch((err) => {
+  console.log('An error occurred while retrieving token. ', err);
+  // ...
+});
+/*
+messaging.onMessage((payload) => {
+  console.log('[firebase-messaging-sw.js] Received background message ', payload);
+  console.log("Message recieved from server")
+  // Customize notification here
+  const notificationTitle = 'Background Message Title';
+  const notificationOptions = {
+    body: 'Background Message body.',
+    icon: '/firebase-logo.png'
+  };
+
+  self.registration.showNotification(notificationTitle,
+    notificationOptions);
+});*/
+
+    /*
+    window.addEventListener('load', e => {
+      subscribeToPushNotification();
+      checkIfPushIsEnabled();
+    });
+    function checkIfPushIsEnabled() {
+    //---check if push notification permission has been denied by the user---
+    if (Notification.permission === 'denied') {
+        console.log('User has blocked push notification.');
+        return;
+    }
+    //---check if push notification is supported or not---
+    if (!('PushManager' in window)) {
+        console.log('Sorry, Push notification is ' + 'not supported on this browser.');
+        return;
+    }
+    //---get push notification subscription if serviceWorker is registered and ready---
+    navigator.serviceWorker.ready
+    .then(function (registration) {
+        registration.pushManager.getSubscription()
+        .then(function (subscription) {
+            if (subscription) {
+                //---user is currently subscribed to push---
+            console.log("user is currently subscribed to push");
+            }
+            else {
+                //---user is not subscribed to push---
+                console.log("user is not subscribed to push");
+            }
+        })
+        .catch(function (error) {
+            console.error('Error occurred enabling push ', error);
+        });
+    });
+}
+    
+      function subscribeToPushNotification() {
+    navigator.serviceWorker.ready
+    .then(function(registration) {
+      console.log('Push notification subscribing.');
+
+        if (!registration.pushManager) {
+            alert('This browser does not ' + 'support push notification.');
+            return false;
+        }
+        //---to subscribe push notification using pushmanager---
+        registration.pushManager.subscribe(
+        //---always show notification when received---
+        { userVisibleOnly: true }
+        )
+        .then(function (subscription) {
+            console.log('Push notification subscribed.');
+            console.log(subscription);
+        })
+        .catch(function (error) {
+            console.log('Push notification subscription error: ', error);
+        });
+    })
+}
+*/
 </script>
 </body>
 
