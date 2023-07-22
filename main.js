@@ -7,11 +7,8 @@ function onScanSuccess(decodedText, decodedResult) {
     var qrcode = new QRCode("qrcode",  decodedText+""+id);	
  
     //stop scanning
-    html5QrCode.stop().then((ignore) => {
-        // QR Code scanning is stopped.
-      }).catch((err) => {
-        // Stop failed, handle it.
-      });
+    html5QrCode.stop()
+    document.getElementById('qr').visibility="hidden";
 
   }
   
@@ -22,7 +19,7 @@ function onScanSuccess(decodedText, decodedResult) {
   }
   
   document.getElementById("scanButton").addEventListener("click", function () {
- 
+    document.getElementById('qr').visibility="block";
     // Ensure that html5QrcodeScanner is initialized before calling render
     if (html5QrcodeScanner) {
       html5QrcodeScanner.render(onScanSuccess, onScanFailure);
@@ -35,7 +32,7 @@ function onScanSuccess(decodedText, decodedResult) {
 
 
   window.onload = function() { //default running
-  
+    
      html5QrcodeScanner = new Html5QrcodeScanner(
         "reader",
         { fps: 10, qrbox: {width: 500, height: 500} , facingmode:"environment"},
