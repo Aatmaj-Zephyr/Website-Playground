@@ -5,6 +5,14 @@ function onScanSuccess(decodedText, decodedResult) {
     console.log(`Code matched = ${decodedText}`, decodedResult);
     window.alert(decodedText);
     var qrcode = new QRCode("qrcode",  decodedText+""+id);	
+ 
+    //stop scanning
+    html5QrCode.stop().then((ignore) => {
+        // QR Code scanning is stopped.
+      }).catch((err) => {
+        // Stop failed, handle it.
+      });
+
   }
   
   function onScanFailure(error) {
@@ -30,7 +38,7 @@ function onScanSuccess(decodedText, decodedResult) {
   
      html5QrcodeScanner = new Html5QrcodeScanner(
         "reader",
-        { fps: 10, qrbox: {width: 500, height: 500} },
+        { fps: 10, qrbox: {width: 500, height: 500} , facingmode:"environment"},
         /* verbose= */ false
       );
     
