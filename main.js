@@ -19,7 +19,7 @@ function onScanSuccess(decodedText, decodedResult) {
   }
   
   document.getElementById("scanButton").addEventListener("click", function () {
-    document.getElementById('qr').display="block";
+    //document.getElementById('qr').display="block";
     // Ensure that html5QrcodeScanner is initialized before calling render
     if (html5QrcodeScanner) {
       html5QrcodeScanner.render(onScanSuccess, onScanFailure);
