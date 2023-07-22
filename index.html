@@ -1,38 +1,17 @@
-let html5QrcodeScanner ;
-let id=16010121110
-function onScanSuccess(decodedText, decodedResult) {
-    // handle the scanned code as you like, for example:
-    console.log(`Code matched = ${decodedText}`, decodedResult);
-    window.alert(decodedText);
-    var qrcode = new QRCode("qrcode",  decodedText+""+id);	
-  }
-  
-  function onScanFailure(error) {
-    // handle scan failure, usually better to ignore and keep scanning.
-    // for example:
-    console.warn(`Code scan error = ${error}`);
-  }
-  
-  document.getElementById("scanButton").addEventListener("click", function () {
- 
-    // Ensure that html5QrcodeScanner is initialized before calling render
-    if (html5QrcodeScanner) {
-      html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-    }
-    else{
-        console.log("Error htmlqrcodeScanner is not initialized");
-    }
-  });
-  
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Code Scanner</title>
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-
-  window.onload = function() { //default running
+</head>
+<body>
+    <button id="scanButton">SCAN</button>
   
-     html5QrcodeScanner = new Html5QrcodeScanner(
-        "reader",
-        { fps: 10, qrbox: {width: 500, height: 500} },
-        /* verbose= */ false
-      );
-    
-  }
-
+  <div id="reader"></div>
+  <div class="qr" id="qrcode"></div>
+  <script src="./main.js" type="text/javascript"></script>
+   <!-- place js file here to endure it loads after loading>
+</body>
+</html>
