@@ -10,7 +10,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.5.0/aframe.js"></script>
 
 </head>
-<script>/* global AFRAME */
+<script>
+    const links=["http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4","http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4","https://cdn.aframe.io/videos/fireworks.mp4","https://www.w3schools.com/tags/movie.mp4","https://cdn.aframe.io/videos/bunny.mp4","http://techslides.com/demos/sample-videos/small.mp4"]
+    var currVideoID = 0;
+    /* global AFRAME */
     AFRAME.registerComponent('play-on-click', {
       init: function () {
         this.onClick = this.onClick.bind(this);
@@ -30,7 +33,7 @@
       
     });
 
-    AFRAME.registerComponent('change-color-on-hover', {
+    AFRAME.registerComponent('next', {
     schema: {
       color: {default: 'red'}
     },
@@ -41,7 +44,35 @@
       var defaultColor = el.getAttribute('material').color;
 
       el.addEventListener('mouseenter', function () {
-        document.getElementById("videoBunny").src="https://cdn.aframe.io/videos/fireworks.mp4"
+        document.getElementById("videoBunny").src=links[currVideoID];
+        currVideoID=currVideoID+1;
+        if(currVideoID==links.length){
+            currVideoID=0
+        }
+      });
+
+      el.addEventListener('mouseleave', function () {
+        el.setAttribute('color', defaultColor);
+      });
+    }
+  });
+
+  AFRAME.registerComponent('prev', {
+    schema: {
+      color: {default: 'red'}
+    },
+
+    init: function () {
+      var data = this.data;
+      var el = this.el;  // <a-box>
+      var defaultColor = el.getAttribute('material').color;
+
+      el.addEventListener('mouseenter', function () {
+        document.getElementById("videoBunny").src=links[currVideoID];
+        currVideoID=currVideoID-1;
+        if(currVideoID==-1){
+            currVideoID=links.length-1
+        }
       });
 
       el.addEventListener('mouseleave', function () {
@@ -54,7 +85,7 @@
 <body>
 <a-scene>
 <a-assets>
-<video id="videoBunny" preload="auto" src="https://cdn.aframe.io/videos/bunny.mp4" width="160" height="90" autoplay loop="true" crossOrigin="anonymous" muted></video>
+<video id="videoBunny" preload="none" src="https://www.w3schools.com/tags/movie.mp4" width="160" height="90" autoplay loop="true" ></video>
 <!-- Load your panorama image asset -->
 <img id="panorama" src="img.png" >
    
@@ -65,7 +96,8 @@
 <a-entity id="rig" position="25 10 0">
   <a-entity id="camera" camera look-controls></a-entity>
 </a-entity>
-<a-box change-color-on-hover onclick='console.log("ok")' position="-1 0.5 -3" id="next" rotation="0 45 0" color="#4CC3D9" ></a-box>
+<a-box next onclick='console.log("next")' position="-3 1.5 -3" id="next" rotation="0 0 0" color="#4CC3D9" ></a-box>
+<a-box prev onclick='console.log("previous")' position="3 1.5 -3" id="next" rotation="0 0 0" color="#4CC3D9" ></a-box>
 
 
 <a-camera>
