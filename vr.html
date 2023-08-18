@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 
 <meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" >
+<meta http-equiv="origin-trial" data-feature=" WebXR Device API (For Chrome M69+)" >
 <meta charset="utf-8">
 <title>Video</title>
 <meta name="description" content="Video - A-Frame">
@@ -11,7 +11,19 @@
 
 </head>
 <script>
-    const links=["http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4","http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4","https://cdn.aframe.io/videos/fireworks.mp4","https://www.w3schools.com/tags/movie.mp4","https://cdn.aframe.io/videos/bunny.mp4","http://techslides.com/demos/sample-videos/small.mp4"]
+    
+    const links=[
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      "https://cdn.aframe.io/videos/fireworks.mp4",
+      "https://cdn.aframe.io/videos/bunny.mp4",
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+      ]
+   
+   
     var currVideoID = 0;
     /* global AFRAME */
     AFRAME.registerComponent('play-on-click', {
@@ -87,17 +99,17 @@
 <a-assets>
 <video id="videoBunny" preload="none" src="https://www.w3schools.com/tags/movie.mp4" width="160" height="90" autoplay loop="true" ></video>
 <!-- Load your panorama image asset -->
-<img id="panorama" src="img.png" >
+<img id="panorama" src="img.jpg" >
    
 </a-assets>
 <a-sky  src="#panorama"></a-sky>
-<a-entity material="shader: flat; src: #videoBunny" geometry="primitive: plane; width: 160; height: 90;" position="0 0 -60" rotation="0 0 0" play-on-click >
+<a-entity material="shader: flat; src: #videoBunny" geometry="primitive: plane; width: 160; height: 90;" position="0 0 -80" rotation="0 0 0" play-on-click >
 </a-entity>
 <a-entity id="rig" position="25 10 0">
   <a-entity id="camera" camera look-controls></a-entity>
 </a-entity>
-<a-box next onclick='console.log("next")' position="-3 1.5 -3" id="next" rotation="0 0 0" color="#4CC3D9" ></a-box>
-<a-box prev onclick='console.log("previous")' position="3 1.5 -3" id="next" rotation="0 0 0" color="#4CC3D9" ></a-box>
+<a-plane height="4.5" next onclick='console.log("next")' position="-3.8 1.5 -3" id="next" rotation="0 0 0" color="#743b8f" ></a-plane>
+<a-plane  height="4.5" prev onclick='console.log("previous")' position="3.8 1.5 -3" id="next" rotation="0 0 0" color="#743b8f" ></a-plane>
 
 
 <a-camera>
