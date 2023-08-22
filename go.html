@@ -24,10 +24,16 @@ function addObj() {
  
   object.setAttribute('radius', '0.5');
   object.setAttribute('color', '#743b8f');
-  
-  object.addEventListener('click', function() {
+  document.addEventListener('click', function() {
+    isScreenPressed = true;
+    
+  });
+  object.addEventListener('mousedown', function() {
+    
+    
     scene.removeChild(object);
     console.log("clicked...")
+    
   });
   // id of the object to repeat, appear and disappear randomly
 
