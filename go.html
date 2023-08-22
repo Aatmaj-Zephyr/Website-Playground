@@ -29,6 +29,10 @@ document.addEventListener('mousedown', function() {
     
   });
 
+function updateScore(){ //update the score in the scoreboard window
+    document.getElementById("scoreboard").setAttribute("value", score);
+}
+
 function addObj() {
   const scene = document.getElementById('scene');
   const object = document.createElement('a-sphere');
@@ -46,6 +50,7 @@ function addObj() {
     scene.removeChild(object);
     console.log("clicked...")
     score+=1;
+    updateScore()
     console.log("score="+score)
     
   });
@@ -69,7 +74,10 @@ setInterval(addObj, 3000);
     </script>
 
 <body>
+     
+
     
+  
     <audio id="clickSound" style="display: none;">
         <source src="bullet1.mp3" type="audio/mp3">
         
@@ -78,8 +86,13 @@ setInterval(addObj, 3000);
         <source src="victory.mp3" type="audio/mp3">
         
       </audio>
-<a-scene id="scene"
->
+<a-scene id="scene">
+     <!-- Create a plane -->
+     <a-plane color="#b4ff85" width="4" height="2" position="3 5 -4.01"></a-plane>
+
+     <!-- Add text on the plane -->
+     <a-text id="scoreboard" value="Welcome!" color="black" position="3 5 -4" align="center"></a-text>
+  
 <a-assets>
 
    
