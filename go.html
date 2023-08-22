@@ -12,11 +12,22 @@
 </head>
 <script>
     
-   
+var score=0;
 window.onload = function (){
     console.log("loading website")
+    var clickSound = document.getElementById("clickSound");
+    var victorySound = document.getElementById("victorySound");
+   
 
 };
+
+document.addEventListener('click', function() {
+    clickSound.pause();//if previous sound is still playing
+    // Play the audio
+    clickSound.currentTime = 0; // Rewind the audio to the beginning
+    clickSound.play();
+    
+  });
 
 function addObj() {
   const scene = document.getElementById('scene');
@@ -24,15 +35,18 @@ function addObj() {
  
   object.setAttribute('radius', '0.5');
   object.setAttribute('color', '#743b8f');
-  document.addEventListener('click', function() {
-    isScreenPressed = true;
-    
-  });
+  
   object.addEventListener('mousedown', function() {
     
+    victorySound.pause();//if previous sound is still playing
+    // Play the audio
+    victorySound.currentTime = 0; // Rewind the audio to the beginning
+    victorySound.play();
     
     scene.removeChild(object);
     console.log("clicked...")
+    score+=1;
+    console.log("score="+score)
     
   });
   // id of the object to repeat, appear and disappear randomly
@@ -55,6 +69,14 @@ setInterval(addObj, 3000);
     </script>
 
 <body>
+    <audio id="clickSound" style="display: none;">
+        <source src="bullet1.mp3" type="audio/mp3">
+        
+      </audio>
+      <audio id="victorySound" style="display: none;">
+        <source src="victory.mp3" type="audio/mp3">
+        
+      </audio>
 <a-scene id="scene"
 >
 <a-assets>
