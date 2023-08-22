@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" >
+<meta http-equiv="origin-trial" data-feature=" WebXR Device API (For Chrome M69+)" >
+<meta charset="utf-8">
+<title>Video</title>
+<meta name="description" content="Video - A-Frame">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.js"></script>
+
+</head>
+<script>
+    
+   
+window.onload = function (){
+    console.log("loading website")
+
+    document.getElementById('obj').addEventListener("click",clicked);
+    move(obj)
+};
+
+function move(obj) {
+// id of the object to repeat, appear and disappear randomly
+randomPos=""+(0.5+Math.random()*20)+" "+(0.5+Math.random()*20)+" "+(0.5+Math.random()*20);
+    document.getElementById('obj').setAttribute('position', randomPos);
+    console.log(randomPos)
+}
+
+ function clicked(){
+    console.log("Clicked..")
+    
+ }
+    </script>
+
+<body>
+<a-scene>
+<a-assets>
+
+   
+</a-assets>
+
+</a-entity>
+<a-entity id="rig" position="25 10 0">
+  <a-entity id="camera" camera look-controls></a-entity>
+</a-entity>
+<a-sphere id='obj' height="1.6" width="0.5" prev position="1.6 1.5 -5" id="next" rotation="0 0 0" color="#743b8f" ></a-sphere>
+
+
+<a-camera>
+    <a-cursor></a-cursor>
+</a-camera>
+</a-scene>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" >
+<meta http-equiv="origin-trial" data-feature=" WebXR Device API (For Chrome M69+)" >
+<meta charset="utf-8">
+<title>Video</title>
+<meta name="description" content="Video - A-Frame">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.js"></script>
+
+</head>
+<body>
+<script>
+    AFRAME.registerComponent('modify-materials', {
+      init: function () {
+        // Wait for model to load.
+        this.el.addEventListener('model-loaded', () => {
+          // Grab the mesh / scene.
+          const obj = this.el.getObject3D('mesh');
+          // Go over the submeshes and modify materials we want.
+          obj.traverse(node => {
+            if (node.name.indexOf('ship') !== -1) {
+              node.material.color.set('red');
+            }
+          });
+        });
+      }
+    });
+  </script>
+  
+  <a-scene background="color: #ECECEC">
+    <a-assets>
+      <a-asset-item id="cityModel" src="https://cdn.aframe.io/test-models/models/glTF-2.0/virtualcity/VC.gltf"></a-asset-item>
+    </a-assets>
+    <a-entity gltf-model="#cityModel" modify-materials></a-entity>
+  </a-scene>
+
+      
+</body>
