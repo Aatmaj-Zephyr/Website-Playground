@@ -16,17 +16,32 @@
 window.onload = function (){
     console.log("loading website")
 
-    document.getElementById('obj').addEventListener("click",clicked);
-    move(obj)
 };
 
-function move(obj) {
-// id of the object to repeat, appear and disappear randomly
-randomPos=""+(0.5+Math.random()*20)+" "+(0.5+Math.random()*20)+" "+(0.5+Math.random()*20);
-    document.getElementById('obj').setAttribute('position', randomPos);
+function addObj() {
+  const scene = document.getElementById('scene');
+  const object = document.createElement('a-sphere');
+ 
+  object.setAttribute('radius', '0.5');
+  object.setAttribute('color', '#743b8f');
+  
+  object.addEventListener('click', function() {
+    scene.removeChild(object);
+    console.log("clicked...")
+  });
+  // id of the object to repeat, appear and disappear randomly
+
+    randomPos=""+((0.5-Math.random())*20)+" "+((0.5-Math.random())*20)+" "+((0.5-Math.random())*20)+""
+    object.setAttribute('position',randomPos)
     console.log(randomPos)
+
+  scene.appendChild(object);
 }
 
+
+
+
+setInterval(addObj, 3000);
  function clicked(){
     console.log("Clicked..")
     
@@ -34,7 +49,8 @@ randomPos=""+(0.5+Math.random()*20)+" "+(0.5+Math.random()*20)+" "+(0.5+Math.ran
     </script>
 
 <body>
-<a-scene>
+<a-scene id="scene"
+>
 <a-assets>
 
    
@@ -44,7 +60,7 @@ randomPos=""+(0.5+Math.random()*20)+" "+(0.5+Math.random()*20)+" "+(0.5+Math.ran
 <a-entity id="rig" position="25 10 0">
   <a-entity id="camera" camera look-controls></a-entity>
 </a-entity>
-<a-sphere id='obj' height="1.6" width="0.5" prev position="1.6 1.5 -5" id="next" rotation="0 0 0" color="#743b8f" ></a-sphere>
+
 
 
 <a-camera>
