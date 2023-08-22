@@ -21,7 +21,7 @@ window.onload = function (){
 
 };
 
-document.addEventListener('click', function() {
+document.addEventListener('mousedown', function() {
     clickSound.pause();//if previous sound is still playing
     // Play the audio
     clickSound.currentTime = 0; // Rewind the audio to the beginning
@@ -69,6 +69,7 @@ setInterval(addObj, 3000);
     </script>
 
 <body>
+    
     <audio id="clickSound" style="display: none;">
         <source src="bullet1.mp3" type="audio/mp3">
         
