@@ -123,11 +123,41 @@ fireBullet();
         <source src="victory.mp3" type="audio/mp3">
         
       </audio>
-      <div id="video-holder">
-        <video autoplay></video>
-      </div>
+     
         
-<a-scene id="scene">
+<a-scene id="scene" tick="updatePosition">
+    <script>
+        //to move element of camera
+        // Get references to the camera and the centered element
+const camera = document.querySelector('a-camera');
+const centeredBox = document.querySelector('#ar');
+
+// Function to update the position during each frame
+function updatePosition() {
+    console.log('updatePosition')
+  // Get the camera's position and rotation
+  const cameraPosition = camera.getAttribute('position');
+  const cameraRotation = camera.getAttribute('rotation');
+
+  // Calculate the new position for the centered element
+  const distance = 10; // Adjust this distance as needed
+  const rotationRadians = cameraRotation.y * (Math.PI / 180);
+  const xOffset = Math.sin(rotationRadians) * distance;
+  const zOffset = Math.cos(rotationRadians) * distance;
+
+  // Update the position of the centered element
+  centeredBox.setAttribute('position', {
+    x: cameraPosition.x + xOffset,
+    y: cameraPosition.y,
+    z: cameraPosition.z + zOffset,
+  });
+}
+
+// Set the updatePosition function as the tick event handler
+const scene = document.querySelector('#scene');
+scene.addEventListener('updatePosition', updatePosition);
+
+        </script>
      <!-- Create a plane -->
      <a-plane color="#b4ff85" width="4" height="2" position="3 5 -4.01"></a-plane>
 
@@ -138,6 +168,10 @@ fireBullet();
 
    
 </a-assets>
+ <!-- Add a sky element (video stream) -->
+ <a-plane id="ar" width="4000" height="2000" position="300 -500 -400" src="#videoStream"></a-plane>
+  <!-- Video element for live stream -->
+  <video id="videoStream" autoplay playsinline style="display: none;"></video>
 
 </a-entity>
 <a-entity id="rig" position="25 10 0">
