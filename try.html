@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" >
+<meta http-equiv="origin-trial" data-feature=" WebXR Device API (For Chrome M69+)" >
+<meta charset="utf-8">
+<title>Video</title>
+<meta name="description" content="Video - A-Frame">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.js"></script>
+
+</head>
+<script>
+    
+var score=0;
+window.onload = function (){
+    console.log("loading website")
+    var clickSound = document.getElementById("clickSound");
+    var victorySound = document.getElementById("victorySound");
+   
+
+};
+
+document.addEventListener('mousedown', function() {
+    clickSound.pause();//if previous sound is still playing
+    // Play the audio
+    clickSound.currentTime = 0; // Rewind the audio to the beginning
+    clickSound.play();
+    
+  });
+
+function updateScore(){ //update the score in the scoreboard window
+    document.getElementById("scoreboard").setAttribute("value", score);
+}
+
+function addObj() {
+  const scene = document.getElementById('scene');
+  const object = document.createElement('a-sphere');
+ 
+  object.setAttribute('radius', '0.5');
+  object.setAttribute('color', '#743b8f');
+  
+  object.addEventListener('mousedown', function() {
+    
+    victorySound.pause();//if previous sound is still playing
+    // Play the audio
+    victorySound.currentTime = 0; // Rewind the audio to the beginning
+    victorySound.play();
+    
+    scene.removeChild(object);
+    console.log("clicked...")
+    score+=1;
+    updateScore()
+    console.log("score="+score)
+    
+  });
+  // id of the object to repeat, appear and disappear randomly
+
+    randomPos=""+((0.5-Math.random())*20)+" "+((0.5-Math.random())*20)+" "+((0.5-Math.random())*20)+""
+    object.setAttribute('position',randomPos)
+    console.log(randomPos)
+
+  scene.appendChild(object);
+}
+
+var bullet = document.getElementById("bullet");
+var scene = document.querySelector("a-scene");
+    var movingSphere = document.getElementById("movingSphere");
+function fireBullet(){
+    console.log("fired")
+    var cursorPosition = cursor.getAttribute("position");
+    bullet.setAttribute("position", cursorPosition);
+    bullet.setAttribute("visible", "true");
+    camera.getWorldDirection(gazeDirection);
+    var moveSpeed = 0.05; // Adjust as needed
+
+scene.addEventListener("tick", function () {
+  camera.getWorldDirection(gazeDirection);
+  raycaster.ray.origin.copy(camera.object3D.position);
+  raycaster.ray.direction.copy(gazeDirection);
+
+  var intersects = raycaster.intersectObject(scene.object3D, true);
+
+  if (intersects.length > 0) {
+    var targetPosition = intersects[0].point;
+    var currentPosition = movingSphere.getAttribute("position");
+
+    movingSphere.setAttribute("position", {
+      x: currentPosition.x + (targetPosition.x - currentPosition.x) * moveSpeed,
+      y: currentPosition.y + (targetPosition.y - currentPosition.y) * moveSpeed,
+      z: currentPosition.z + (targetPosition.z - currentPosition.z) * moveSpeed
+    });
+  }
+});
+
+}
+
+cursor = document.getElementById("cursor")
+var camera = document.querySelector("a-camera");
+var gazeDirection = new THREE.Vector3();
+var raycaster = new THREE.Raycaster();
+
+
+setInterval(addObj, 3000);
+ function clicked(){
+    console.log("Clicked..")
+    // Call the fireBullet function to trigger the effect
+fireBullet();
+}
+
+    </script>
+
+<body>
+     
+
+    
+  
+    <audio id="clickSound" style="display: none;">
+        <source src="bullet1.mp3" type="audio/mp3">
+        
+      </audio>
+      <audio id="victorySound" style="display: none;">
+        <source src="victory.mp3" type="audio/mp3">
+        
+      </audio>
+      <div id="video-holder">
+        <video autoplay></video>
+      </div>
+        
+<a-scene id="scene">
+     <!-- Create a plane -->
+     <a-plane color="#b4ff85" width="4" height="2" position="3 5 -4.01"></a-plane>
+
+     <!-- Add text on the plane -->
+     <a-text id="scoreboard" value="Welcome!" color="black" position="3 5 -4" align="center"></a-text>
+  
+<a-assets>
+
+   
+</a-assets>
+
+</a-entity>
+<a-entity id="rig" position="25 10 0">
+  <a-entity id="camera" camera look-controls></a-entity>
+</a-entity>
+
+<a-sphere id="movingSphere" ></a-sphere>
+
+
+
+
+<a-camera>
+    <a-cursor id="cursor"></a-cursor>
+</a-camera>
+
+
+<script>
+  // for video
+  const constraints = {
+  video: {
+    facingMode: "environment",
+  }
+};
+
+const video = document.querySelector('video');
+
+navigator.mediaDevices.getUserMedia(constraints).
+  then((stream) => {video.srcObject = stream});
+</script>
+</a-scene>
+
+</body>
+</html>
