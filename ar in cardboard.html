@@ -17,6 +17,9 @@ window.onload = function (){
     console.log("loading website")
     var clickSound = document.getElementById("clickSound");
     var victorySound = document.getElementById("victorySound");
+   // todo// var arvideo= document.getElementById('videoStream'); // Replace 'videoElement' with your video's ID
+     
+     //document.getElementById("ar").setAttribute("height",arvideo.videoHeight)
    
 
 };
@@ -129,33 +132,12 @@ fireBullet();
     <script>
         //to move element of camera
         // Get references to the camera and the centered element
-const camera = document.querySelector('a-camera');
 const centeredBox = document.querySelector('#ar');
 
-// Function to update the position during each frame
-function updatePosition() {
-    console.log('updatePosition')
-  // Get the camera's position and rotation
-  const cameraPosition = camera.getAttribute('position');
-  const cameraRotation = camera.getAttribute('rotation');
 
-  // Calculate the new position for the centered element
-  const distance = 10; // Adjust this distance as needed
-  const rotationRadians = cameraRotation.y * (Math.PI / 180);
-  const xOffset = Math.sin(rotationRadians) * distance;
-  const zOffset = Math.cos(rotationRadians) * distance;
 
-  // Update the position of the centered element
-  centeredBox.setAttribute('position', {
-    x: cameraPosition.x + xOffset,
-    y: cameraPosition.y,
-    z: cameraPosition.z + zOffset,
-  });
-}
 
-// Set the updatePosition function as the tick event handler
-const scene = document.querySelector('#scene');
-scene.addEventListener('updatePosition', updatePosition);
+
 
         </script>
      <!-- Create a plane -->
@@ -169,7 +151,6 @@ scene.addEventListener('updatePosition', updatePosition);
    
 </a-assets>
  <!-- Add a sky element (video stream) -->
- <a-plane id="ar" width="4000" height="2000" position="300 -500 -400" src="#videoStream"></a-plane>
   <!-- Video element for live stream -->
   <video id="videoStream" autoplay playsinline style="display: none;"></video>
 
@@ -185,6 +166,8 @@ scene.addEventListener('updatePosition', updatePosition);
 
 <a-camera>
     <a-cursor id="cursor"></a-cursor>
+    <a-plane id="ar"  width="2000" height="1000" position="0 0 -400" src="#videoStream"></a-plane>
+
 </a-camera>
 
 
