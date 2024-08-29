@@ -1,7 +1,133 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Processing</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        video, canvas {
+            border: 1px solid black;
+            margin: 10px;
+        }
+        #container {
+            display: flex;
+        }
+        .controls {
+            margin-top: 20px;
+        }
+        .control {
+            margin: 10px;
+        }
+    </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<input type="file">
+    <div id="container">
+        <video id="video" style="display:None" autoplay></video>
+        <canvas id="originalCanvas"></canvas>
+        <canvas id="alteredCanvas"></canvas>
+    </div>
 
+    <div class="controls">
+        <div class="control">
+            <label for="rSlider">R (Adjustment Factor): </label>
+            <input type="range" id="rSlider" min="0" max="10" step="0.1" value="4.1">
+            <span id="rValue">4.1</span>
+        </div>
+        <div class="control">
+            <label for="kSlider">K (Number of Frames): </label>
+            <input type="range" id="kSlider" min="1" max="10" step="1" value="1">
+            <span id="kValue">0</span>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        const originalCanvas = document.getElementById('originalCanvas');
+        const alteredCanvas = document.getElementById('alteredCanvas');
+        const originalContext = originalCanvas.getContext('2d');
+        const alteredContext = alteredCanvas.getContext('2d');
+
+        let frameHistory = [];
+        let K = parseInt(document.getElementById('kSlider').value); // Number of past frames to consider
+        let r = parseFloat(document.getElementById('rSlider').value); // Adjustment factor
+
+        const WIDTH = 640;
+        const HEIGHT = 480;
+
+        // Set canvas dimensions
+        originalCanvas.width = WIDTH;
+        originalCanvas.height = HEIGHT;
+        alteredCanvas.width = WIDTH;
+        alteredCanvas.height = HEIGHT;
+
+        // Get video stream
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+                video.play();
+                processVideo();
+            })
+            .catch(err => {
+                console.error('Error accessing webcam:', err);
+            });
+
+        function processVideo() {
+            originalContext.drawImage(video, 0, 0, WIDTH, HEIGHT);
+            const originalImageData = originalContext.getImageData(0, 0, WIDTH, HEIGHT);
+            const originalData = originalImageData.data;
+
+            // Add the frame to the history
+            frameHistory.push(originalImageData);
+            if (frameHistory.length > K) {
+                frameHistory.shift(); // Keep only the last K frames
+            }
+
+            // Compute the altered frame
+            const alteredImageData = new ImageData(WIDTH, HEIGHT);
+            const alteredData = alteredImageData.data;
+
+            // Initialize the altered frame with the current frame data
+            for (let i = 0; i < originalData.length; i++) {
+                alteredData[i] = originalData[i];
+            }
+
+            // Apply the difference
+            for (let i = 1; i < frameHistory.length; i++) {
+                //start with 1 to not consider current frame
+                const pastData = frameHistory[frameHistory.length - i - 1].data;
+                for (let j = 0; j < originalData.length; j++) {
+                    alteredData[j] += r * (originalData[j] - pastData[j]);
+                }
+            }
+
+            alteredContext.putImageData(alteredImageData, 0, 0);
+
+            // Schedule the next frame processing
+            requestAnimationFrame(processVideo);
+        }
+
+        // Update the value of r and K when sliders are changed
+        document.getElementById('rSlider').addEventListener('input', (event) => {
+            r = parseFloat(event.target.value);
+            document.getElementById('rValue').textContent = r;
+        });
+
+        document.getElementById('kSlider').addEventListener('input', (event) => {
+            K = parseInt(event.target.value);
+            document.getElementById('kValue').textContent = K-1;
+            // Adjust frame history size
+            if (frameHistory.length > K) {
+                frameHistory = frameHistory.slice(-K);
+            }
+        });
+    </script>
 </body>
 </html>
