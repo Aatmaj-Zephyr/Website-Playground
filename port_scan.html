@@ -1,5 +1,53 @@
-<html>
-  <script>
-    for(let[i]=[4999];i<5003;i++){fetch(decodeURIComponent("http%3A%2F%2Flocalhost:")+i,{mode:"no-cors" }).then(function(){alert(i);b+=i+","});}
-  </script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Object in Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Contents of Object b</h1>
+<table id="data-table">
+    <thead>
+        <tr>
+            <th>Index</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<script>
+
+  
+     b={};for(let[i]=[4999];i<6000;i++){fetch(decodeURIComponent("http%3A%2F%2Flocalhost:")+i,{mode:"no-cors",signal:AbortSignal.timeout(500)}).then(function(response){b[i]=":"+response.body+",";}).catch(function(error){b[i]=":"+error+","});}
+
+    
+    const tableBody = document.getElementById('data-table').getElementsByTagName('tbody')[0];
+
+    for (const key in b) {
+        if (b.hasOwnProperty(key)) {
+            const row = tableBody.insertRow();
+            const cell1 = row.insertCell(0);
+            const cell2 = row.insertCell(1);
+            cell1.textContent = key;
+            cell2.textContent = b[key];
+        }
+    }
+</script>
+
+</body>
 </html>
